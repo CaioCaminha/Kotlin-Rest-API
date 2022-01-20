@@ -10,7 +10,8 @@ import java.util.*
 @Service
 class TopicService(
     private var topics: List<Topic> = ArrayList(),
-    val courseService: CourseService
+    val courseService: CourseService,
+    val userService: UserService
 ) {
 
 
@@ -31,8 +32,9 @@ class TopicService(
         val topic = Topic(
             id = topics.size + 1L,
             title = topicDto.title,
+            message = topicDto.message,
             course = courseService.getById(topicDto.idCourse),
-            author = //todo: implementar UserService
+            author = userService.getById(topicDto.idAuthor)
         )
 
 
